@@ -34,4 +34,27 @@ Public Class Form1
             MsgBox("修改完成")
         End If
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim filePath As String = ""
+
+        Using GamePathf As New OpenFileDialog
+            GamePathf.Filter = "All files (*.*)|*.*"
+            GamePathf.Title = "請選擇檔案"
+            GamePathf.ShowDialog()
+            filePath = GamePathf.FileName
+        End Using
+
+        If File.Exists(filePath) Then
+            Try
+                File.SetLastAccessTime(filePath, DateTime.Now)
+                File.SetLastWriteTime(filePath, DateTime.Now)
+                File.SetCreationTime(filePath, DateTime.Now)
+            Catch ex As Exception
+                MsgBox("格式錯誤")
+                Exit Sub
+            End Try
+            MsgBox("修改完成")
+        End If
+    End Sub
 End Class
