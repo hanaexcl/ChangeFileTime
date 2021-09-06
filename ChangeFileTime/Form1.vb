@@ -29,6 +29,7 @@ Public Class Form1
                 File.SetCreationTime(filePath, DateTime.Parse(TextBox4.Text))
             Catch ex As Exception
                 MsgBox("格式錯誤")
+                Exit Sub
             End Try
             MsgBox("修改完成")
         End If
